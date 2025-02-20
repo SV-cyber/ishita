@@ -6,117 +6,86 @@
     <title>For Someone Special, Ishita ❤️</title>
     <style>
         body {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
             text-align: center;
             font-family: 'Arial', sans-serif;
             color: white;
             padding: 50px;
-            animation: fadeIn 2s ease-in;
         }
         .container {
-            max-width: 500px;
+            max-width: 400px;
             margin: auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px rgba(255, 105, 180, 0.5);
-            backdrop-filter: blur(10px);
-            color: black;
-        }
-        h2 {
-            font-size: 26px;
-            color: #ff4081;
-            animation: glow 2s infinite alternate;
-        }
-        label {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
         input, button {
             width: 80%;
-            padding: 12px;
+            padding: 10px;
             margin: 10px 0;
             border: none;
             border-radius: 5px;
             text-align: center;
             font-size: 16px;
         }
-        .radio-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
         button {
-            background: #ff4081;
-            color: white;
-            font-size: 16px;
-            transition: 0.3s;
+            background: white;
+            color: #ff758c;
             cursor: pointer;
-        }
-        button:hover {
-            background: #ff79a1;
         }
         .hidden {
             display: none;
         }
         img {
             width: 100%;
-            border-radius: 15px;
-            margin-top: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
         }
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #ff4081; }
-            to { text-shadow: 0 0 20px #ff1493; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
-    <audio id="background-music" loop>
-        <source src="https://drive.google.com/file/d/1b_UO1zDCQdIzgDI-tXeMzGpoyh3R0Tcq/view" type="audio/mpeg">
+    <audio id="background-music">
+        <source src="https://raw.githubusercontent.com/SV-cyber/ishita/main/humdard.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="container">
+    <div class="container" id="quiz-container">
         <h2>Happy Birthday Ishita! ❤️</h2>
         <p>Answer these questions correctly to unlock your surprise!</p>
-        
-        <label>1. Do you know whom do you love?</label>
-        <div class="radio-container">
-            <input type="radio" id="yes" name="love" value="yes"> <label for="yes">Yes</label>
-            <input type="radio" id="no" name="love" value="no"> <label for="no">No</label>
 
-        
-         
-          
-        </div>
+        <p>1. Do you know whom you love?</p>
+        <label><input type="radio" name="love" value="yes"> Yes</label>
+        <label><input type="radio" name="love" value="no"> No</label>
 
-        <label>2. Name the person you love:</label>
-        <input type="password" id="password" placeholder="Enter the name...">
-        
+        <p>2. Name the person you love:</p>
+        <input type="password" id="password" placeholder="Enter name...">
         <button onclick="checkAnswers()">Unlock Surprise</button>
+    </div>
 
-        <p id="message" class="hidden">Happy Birthday Love! 🎉❤️</p>
-        <img id="photo" class="hidden" src="https://i.imgur.com/NlgBxjv.jpeg">
-        <div id="surprise" class="hidden">
+    <div id="surprise" class="hidden">
         <p class="message">
             You are the best person... God has gifted me last year whom I wish to be till my last moment forever and ever.... ❤️ <br>
             May you always remain happy and cute as you are now! 😊 <br>
             And remember that you are the prettiest, wo baat alag hai ki hum dono saath m aur bhi zyada better lagte hain... 💑 <br>
             Thank you paida hone k liye..... cheers to 23! 🎉
         </p>
+        <img id="photo" src="https://imgur.com/a/fOxXrOt">
     </div>
-    </div>
-    
 
     <script>
         function checkAnswers() {
-            var loveAnswer = document.querySelector('input[name="love"]:checked');
+            var loveAnswer = document.querySelector('input[name="love"]:checked'); // Get selected radio button
             var inputPassword = document.getElementById("password").value.trim().toLowerCase();
 
             if (!loveAnswer) {
@@ -128,8 +97,8 @@
             var correctLoveAnswer = "yes";
 
             if (inputPassword === correctPassword && loveAnswer.value === correctLoveAnswer) {
-                document.getElementById("quiz-container").classList.add("hidden");
-                document.getElementById("surprise").classList.remove("hidden");
+                document.getElementById("quiz-container").style.display = "none"; // Hide input section
+                document.getElementById("surprise").classList.remove("hidden"); // Show message & image
 
                 // Play music after the user successfully unlocks the surprise
                 var audio = document.getElementById("background-music");
