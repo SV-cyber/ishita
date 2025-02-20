@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special, Ishita ❤️</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            padding: 50px;
+            animation: fadeIn 2s ease-in;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(255, 105, 180, 0.5);
+            backdrop-filter: blur(10px);
+            color: black;
+        }
+        h2 {
+            font-size: 26px;
+            color: #ff4081;
+            animation: glow 2s infinite alternate;
+        }
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, button {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .radio-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        button {
+            background: #ff4081;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #ff79a1;
+        }
+        .hidden {
+            display: none;
+        }
+        img {
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff4081; }
+            to { text-shadow: 0 0 20px #ff1493; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="background-music" loop>
+        <source src="https://github.com/SV-cyber/BirthdaySurprise/raw/main/humdard.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <h2>Happy Birthday Ishita! ❤️</h2>
+        <p>Answer these questions correctly to unlock your surprise!</p>
+        
+        <label>1. Do you know whom do you love?</label>
+        <div class="radio-container">
+            <input type="radio" id="yes" name="love" value="yes"> <label for="yes">Yes</label>
+            <input type="radio" id="no" name="love" value="no"> <label for="no">No</label>
+        </div>
+
+        <label>2. Name the person you love:</label>
+        <input type="password" id="password" placeholder="Enter the name...">
+        
+        <button onclick="checkAnswers()">Unlock Surprise</button>
+
+        <p id="message" class="hidden">Happy Birthday Love! 🎉❤️</p>
+        <img id="photo" class="hidden" src="https://raw.githubusercontent.com/SV-cyber/BirthdaySurprise/refs/heads/main/IMG_20220930_22195146%20-%20Copy.jpg">
+    </div>
+
+    <script>
+        function checkAnswers() {
+            var selectedLove = document.querySelector('input[name="love"]:checked');
+            var inputPassword = document.getElementById("password").value.trim().toLowerCase();
+            
+            var correctPassword = "sundaram";
+            
+            if (selectedLove && selectedLove.value === "yes" && inputPassword === correctPassword) {
+                document.getElementById("message").classList.remove("hidden");
+                document.getElementById("photo").classList.remove("hidden");
+                document.getElementById("background-music").play();
+            } else {
+                alert("Oops! Try again with the correct answers.");
+            }
+        }
+    </script>
+
+</body>
+</html>
