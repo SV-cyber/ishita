@@ -79,7 +79,7 @@
 <body>
 
     <audio id="background-music" loop>
-        <source src="https://github.com/SV-cyber/ishita/blob/e1b5b9b170f37349ac9d3b101e100f7de83bc61e/humdard.mp3">
+        <source src="https://github.com/SV-cyber/ishita/blob/e1b5b9b170f37349ac9d3b101e100f7de83bc61e/humdard.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
@@ -117,15 +117,26 @@
 
     <script>
         function checkAnswers() {
-            var selectedLove = document.querySelector('input[name="love"]:checked');
+            var loveAnswer = document.querySelector('input[name="love"]:checked');
             var inputPassword = document.getElementById("password").value.trim().toLowerCase();
-            
+
+            if (!loveAnswer) {
+                alert("Please select Yes or No!");
+                return;
+            }
+
             var correctPassword = "sundaram";
-            
-            if (selectedLove && selectedLove.value === "yes" && inputPassword === correctPassword) {
-                document.getElementById("message").classList.remove("hidden");
-                document.getElementById("photo").classList.remove("hidden");
-                document.getElementById("background-music").play();
+            var correctLoveAnswer = "yes";
+
+            if (inputPassword === correctPassword && loveAnswer.value === correctLoveAnswer) {
+                document.getElementById("quiz-container").classList.add("hidden");
+                document.getElementById("surprise").classList.remove("hidden");
+
+                // Play music after the user successfully unlocks the surprise
+                var audio = document.getElementById("background-music");
+                audio.play().catch(error => {
+                    console.log("Autoplay prevented! User interaction required:", error);
+                });
             } else {
                 alert("Oops! Try again with the correct answers.");
             }
